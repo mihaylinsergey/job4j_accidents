@@ -8,10 +8,12 @@
   <artifactId>job4j_accidents</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>job4j_accidents</name>
-  <description>A simple job4j_accidents.</description>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.6</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,6 +26,20 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
     </dependency>
   </dependencies>
 </project>
