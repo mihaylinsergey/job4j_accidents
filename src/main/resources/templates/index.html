@@ -16,15 +16,12 @@
 <body>
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/ }">Список нарушений</a>
-                <a class="nav-item nav-link" th:href="@{/ }">Добавить нарушение</a>
-                <a class="nav-item nav-link" th:text="${user}"></a>
+                <a class="nav-item nav-link active" th:href="@{/index}">Главная</a>
+                <a class="nav-item nav-link" th:href="@{/createAccident}">Добавить Инцидент</a>
             </div>
         </div>
-    </div>
     </nav>
     <div class="container">
         <div class="row">
@@ -39,7 +36,7 @@
         </thead>
         <tbody>
         <tr th:each="accident: ${accidents}">
-            <td th:text="${accident.id}"></td>
+            <td><a th:text="${accident.id}" th:href="@{/{accidentId}(accidentId=${accident.id})}"></a></td>
             <td th:text="${accident.name}"></td>
             <td th:text="${accident.text}"></td>
             <td th:text="${accident.address}"></td>
