@@ -18,8 +18,8 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
-                <a class="nav-item nav-link active" th:href="@{/createAccident}">Добавить Инцидент</a>
+                <a class="nav-item nav-link" th:href="@{/accident/index}">Главная</a>
+                <a class="nav-item nav-link active" th:href="@{/accident/createAccident}">Добавить Инцидент</a>
             </div>
         </div>
     </nav>
@@ -29,7 +29,7 @@
                 Редактировать инцидент
             </div>
             <div class="card-body">
-                <form th:action="@{/updateAndSaveAccident}" method="POST" enctype="multipart/form-data" th:object="${accident}">
+                <form th:action="@{/accident/updateAndSaveAccident}" method="POST" enctype="multipart/form-data" th:object="${accident}">
                     <input type="hidden" name="id" th:field="*{id}"/>
                     <div class="form-group">
                         <label for="name">Название</label>
