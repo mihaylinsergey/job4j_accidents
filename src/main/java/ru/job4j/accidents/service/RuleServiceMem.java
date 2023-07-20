@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.RuleRepository;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 @ThreadSafe
@@ -16,7 +16,7 @@ public class RuleServiceMem implements RuleService {
     private final RuleRepository ruleRepository;
 
     @Override
-    public Optional<Rule> findById(int id) {
+    public Set<Rule> findById(String[] id) {
         return ruleRepository.findById(id);
     }
 

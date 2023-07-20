@@ -3,10 +3,9 @@ package ru.job4j.accidents.repository;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Rule;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Repository
 @ThreadSafe
@@ -21,8 +20,14 @@ public class RuleMem implements RuleRepository {
     }
 
     @Override
-    public Optional<Rule> findById(int id) {
-        return Optional.ofNullable(rules.get(id));
+    public Set<Rule> findById(String[] id) {
+        Set<Rule> rule = null;
+        if (id != null) {
+            rule = Arrays.stream(id)
+                    .map(x -> rules.get(Integer.parseInt(x)))
+                    .collect(Collectors.toSet());
+        }
+        return rule;
     }
 
     @Override
