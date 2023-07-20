@@ -33,8 +33,6 @@ public class AccidentController {
 
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
-        int typeId = accident.getType().getId();
-        var type = accidentTypeService.findById(typeId).get();
         String[] ids = req.getParameterValues("rIds");
         Set<Rule> rules = null;
         if (ids != null) {
@@ -42,7 +40,6 @@ public class AccidentController {
                     .map(x -> ruleService.findById(Integer.parseInt(x)).get())
                     .collect(Collectors.toSet());
         }
-        accident.setType(type);
         accident.setRules(rules);
         accidentService.save(accident);
         return "redirect:/accident/index";
@@ -63,8 +60,6 @@ public class AccidentController {
 
     @PostMapping("/updateAndSaveAccident")
     public String updateAndSaveAccident(@ModelAttribute Accident accident, Model model, HttpServletRequest req) {
-        int typeId = accident.getType().getId();
-        var type = accidentTypeService.findById(typeId).get();
         String[] ids = req.getParameterValues("rIds");
         Set<Rule> rules = null;
         if (ids != null) {
@@ -72,7 +67,6 @@ public class AccidentController {
                     .map(x -> ruleService.findById(Integer.parseInt(x)).get())
                     .collect(Collectors.toSet());
         }
-        accident.setType(type);
         accident.setRules(rules);
         if (!accidentService.update(accident)) {
             model.addAttribute("message", "Изменить инцидент %s не удалось".formatted(accident.getName()));
