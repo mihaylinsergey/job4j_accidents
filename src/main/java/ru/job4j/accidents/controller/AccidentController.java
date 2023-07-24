@@ -54,4 +54,13 @@ public class AccidentController {
         }
         return "redirect:/accident/index";
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int id, Model model) {
+        if (!accidentService.delete(id)) {
+            model.addAttribute("message", "Инцидент не удалось удалить");
+            return "error/404";
+        }
+        return "redirect:/accident/index";
+    }
 }
