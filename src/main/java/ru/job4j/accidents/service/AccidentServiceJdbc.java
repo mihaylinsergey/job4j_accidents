@@ -37,15 +37,17 @@ public class AccidentServiceJdbc implements AccidentService {
     @Override
     public Accident save(Accident accident, HttpServletRequest req) {
         Accident accidentWithType = getAccidentWithType(accident);
-        Accident accidentWithTypeAndRule = getAccidentWithRule(accidentWithType, req);
-        return accidentRepository.save(accidentWithTypeAndRule);
+        String[] ids = req.getParameterValues("rIds");
+        Set<Rule> rules = ruleRepository.findById(ids);
+        return accidentRepository.save(accidentWithType, rules);
     }
 
     @Override
     public boolean update(Accident accident, HttpServletRequest req) {
         Accident accidentWithType = getAccidentWithType(accident);
-        Accident accidentWithTypeAndRule = getAccidentWithRule(accidentWithType, req);
-        return accidentRepository.update(accidentWithTypeAndRule);
+        String[] ids = req.getParameterValues("rIds");
+        Set<Rule> rules = ruleRepository.findById(ids);
+        return accidentRepository.update(accidentWithType, rules);
     }
 
     @Override
@@ -57,13 +59,6 @@ public class AccidentServiceJdbc implements AccidentService {
         int typeId = accident.getType().getId();
         var type = accidentTypeRepository.findById(typeId).get();
         accident.setType(type);
-        return accident;
-    }
-
-    private Accident getAccidentWithRule(Accident accident, HttpServletRequest req) {
-        String[] ids = req.getParameterValues("rIds");
-        Set<Rule> rule = ruleRepository.findById(ids);
-        accident.setRules(rule);
         return accident;
     }
 }

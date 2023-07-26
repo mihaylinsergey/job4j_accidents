@@ -56,6 +56,11 @@ public class AccidentMem implements AccidentRepository {
     }
 
     @Override
+    public Accident save(Accident accident, Set<Rule> rules) {
+        return null;
+    }
+
+    @Override
     public boolean update(Accident accident) {
         return accidents.computeIfPresent(accident.getId(), (id, oldAccident) -> {
             return new Accident(oldAccident.getId(),
@@ -65,6 +70,11 @@ public class AccidentMem implements AccidentRepository {
                     accident.getType(),
                     accident.getRules());
         }) != null;
+    }
+
+    @Override
+    public boolean update(Accident accident, Set<Rule> rules) {
+        return false;
     }
 
     @Override

@@ -3,6 +3,5 @@ CREATE TABLE accidents (
   name text,
   text text,
   address text,
-  type int,
-  rules integer[]
+  type_id int references types (id)
 );
