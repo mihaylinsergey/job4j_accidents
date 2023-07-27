@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Repository
-@Primary
 @ThreadSafe
 @AllArgsConstructor
 public class AccidentJdbcTemplate implements AccidentRepository {

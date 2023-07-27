@@ -6,13 +6,15 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.RuleRepository;
+
 import java.util.Collection;
 import java.util.Set;
 
 @Service
-@ThreadSafe
 @AllArgsConstructor
-public class RuleServiceJdbc implements RuleService {
+@Primary
+@ThreadSafe
+public class RuleServiceHibernate implements RuleService {
 
     private final RuleRepository ruleRepository;
 

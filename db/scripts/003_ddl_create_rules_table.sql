@@ -1,4 +1,4 @@
 CREATE TABLE rules (
   id serial primary key,
-  name text
+  name text not null
 );

@@ -5,6 +5,7 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.AccidentRepository;
 import ru.job4j.accidents.repository.AccidentTypeRepository;
@@ -15,10 +16,10 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@ThreadSafe
 @AllArgsConstructor
-public class AccidentServiceJdbc implements AccidentService {
-
+@Primary
+@ThreadSafe
+public class AccidentServiceHibernate implements AccidentService {
     private final AccidentRepository accidentRepository;
     private final AccidentTypeRepository accidentTypeRepository;
     private final RuleRepository ruleRepository;
@@ -35,18 +36,12 @@ public class AccidentServiceJdbc implements AccidentService {
 
     @Override
     public Accident save(Accident accident, HttpServletRequest req) {
-        Accident accidentWithType = getAccidentWithType(accident);
-        String[] ids = req.getParameterValues("rIds");
-        Set<Rule> rules = ruleRepository.findById(ids);
-        return accidentRepository.save(accidentWithType, rules);
+        return accidentRepository.save(getAccidentWithTypeAndRules(accident, req), null);
     }
 
     @Override
     public boolean update(Accident accident, HttpServletRequest req) {
-        Accident accidentWithType = getAccidentWithType(accident);
-        String[] ids = req.getParameterValues("rIds");
-        Set<Rule> rules = ruleRepository.findById(ids);
-        return accidentRepository.update(accidentWithType, rules);
+        return accidentRepository.update(getAccidentWithTypeAndRules(accident, req), null);
     }
 
     @Override
@@ -54,10 +49,12 @@ public class AccidentServiceJdbc implements AccidentService {
         return accidentRepository.delete(id);
     }
 
-    private Accident getAccidentWithType(Accident accident) {
-        int typeId = accident.getType().getId();
-        var type = accidentTypeRepository.findById(typeId).get();
+    private Accident getAccidentWithTypeAndRules(Accident accident, HttpServletRequest req) {
+        AccidentType type = accidentTypeRepository.findById(accident.getType().getId()).get();
         accident.setType(type);
+        String[] ids = req.getParameterValues("rIds");
+        Set<Rule> rules = ruleRepository.findById(ids);
+        accident.setRules(rules);
         return accident;
     }
 }

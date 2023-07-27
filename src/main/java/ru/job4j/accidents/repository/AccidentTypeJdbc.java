@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Repository
-@Primary
 @ThreadSafe
 @AllArgsConstructor
 public class AccidentTypeJdbc implements AccidentTypeRepository {

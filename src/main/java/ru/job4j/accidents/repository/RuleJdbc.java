@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Repository
-@Primary
 @ThreadSafe
 @AllArgsConstructor
 public class RuleJdbc implements RuleRepository {

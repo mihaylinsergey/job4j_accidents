@@ -1,7 +1,7 @@
 CREATE TABLE accidents (
   id serial primary key,
-  name text,
-  text text,
-  address text,
-  type_id int references types (id)
+  name text not null,
+  text text not null,
+  address text not null,
+  type_id int references types (id) not null
 );

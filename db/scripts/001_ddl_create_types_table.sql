@@ -1,4 +1,4 @@
 CREATE TABLE types (
   id serial primary key,
-  name text
+  name text not null
 );
