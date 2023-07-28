@@ -22,7 +22,6 @@ public class AccidentServiceSD {
     private final AccidentTypeServiceSD accidentTypeServiceSD;
     private final RuleServiceSD ruleServiceSD;
 
-
     public void create(Accident accident, HttpServletRequest req) {
         accidentRepositorySD.save(getAccidentWithTypeAndRules(accident, req));
     }
