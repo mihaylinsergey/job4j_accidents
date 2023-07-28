@@ -2,17 +2,14 @@ package ru.job4j.accidents.service;
 
 import lombok.AllArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.RuleRepository;
-
 import java.util.Collection;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
-@Primary
 @ThreadSafe
 public class RuleServiceHibernate implements RuleService {
 

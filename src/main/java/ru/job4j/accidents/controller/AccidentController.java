@@ -5,20 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accidents.model.Accident;
-import ru.job4j.accidents.service.AccidentService;
-import ru.job4j.accidents.service.AccidentTypeService;
-import ru.job4j.accidents.service.RuleService;
+import ru.job4j.accidents.service.*;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/accident")
 public class AccidentController {
-    private final AccidentService accidentService;
+    private final AccidentServiceSD accidentService;
 
-    private final AccidentTypeService accidentTypeService;
+    private final AccidentTypeServiceSD accidentTypeService;
 
-    private final RuleService ruleService;
+    private final RuleServiceSD ruleService;
 
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
@@ -29,7 +28,7 @@ public class AccidentController {
 
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
-        accidentService.save(accident, req);
+        accidentService.create(accident, req);
         return "redirect:/accident/index";
     }
 
