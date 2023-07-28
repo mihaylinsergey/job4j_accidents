@@ -36,12 +36,12 @@ public class AccidentServiceHibernate implements AccidentService {
 
     @Override
     public Accident save(Accident accident, HttpServletRequest req) {
-        return accidentRepository.save(getAccidentWithTypeAndRules(accident, req), null);
+        return accidentRepository.save(getAccidentWithTypeAndRules(accident, req));
     }
 
     @Override
     public boolean update(Accident accident, HttpServletRequest req) {
-        return accidentRepository.update(getAccidentWithTypeAndRules(accident, req), null);
+        return accidentRepository.update(getAccidentWithTypeAndRules(accident, req));
     }
 
     @Override

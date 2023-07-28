@@ -2,8 +2,6 @@ package ru.job4j.accidents.repository;
 
 import lombok.AllArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Rule;
@@ -16,55 +14,26 @@ import java.util.stream.Collectors;
 @ThreadSafe
 public class RuleHibernate implements RuleRepository {
 
-    private final SessionFactory sf;
+    private final CrudRepository crudRepository;
 
     @Override
     public Set<Rule> findById(String[] id) {
-        Session session = sf.openSession();
-        List<Rule> result = new ArrayList<>();
-        List<Integer> ids = Arrays.stream(id).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
-        try {
-            session.beginTransaction();
-            result = session.createQuery("from Rule r where r.id in :fId", Rule.class)
-                    .setParameter("fId", ids)
-                    .list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
+        List<Integer> ids = new ArrayList<>();
+        if (id != null) {
+            ids = Arrays.stream(id).map(x -> Integer.parseInt(x)).collect(Collectors.toList());
         }
-        return new HashSet<>(result);
+        return new HashSet<>(crudRepository.query(
+                "from Rule r where r.id in :fId", Rule.class, Map.of("fId", ids)));
     }
 
     @Override
     public Rule save(Rule rule) {
-        Session session = sf.openSession();
-        try {
-            session.beginTransaction();
-            session.save(rule);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
+        crudRepository.run(session -> session.save(rule));
         return rule;
     }
 
     @Override
     public Collection<Rule> findAll() {
-        Session session = sf.openSession();
-        List<Rule> result = new ArrayList<>();
-        try {
-            session.beginTransaction();
-            result = session.createQuery("from Rule ORDER BY id").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-        return result;
+        return crudRepository.query("from Rule ORDER BY id", Rule.class);
     }
 }
