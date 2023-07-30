@@ -7,6 +7,7 @@ import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.repository.AccidentTypeRepositorySD;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @Service
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class AccidentTypeServiceSD {
     private final AccidentTypeRepositorySD accidentTypeRepositorySD;
 
     public Collection<AccidentType> findAll() {
-        return (Collection<AccidentType>) accidentTypeRepositorySD.findAll();
+        return StreamSupport.stream(accidentTypeRepositorySD.findAll().spliterator(), false).toList();
     }
 
     public Optional<AccidentType> findById(int id) {

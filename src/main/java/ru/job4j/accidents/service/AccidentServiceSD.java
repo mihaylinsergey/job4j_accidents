@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +30,7 @@ public class AccidentServiceSD {
     }
 
     public List<Accident> findAll() {
-        return (List<Accident>) accidentRepositorySD.findAll();
+        return StreamSupport.stream(accidentRepositorySD.findAll().spliterator(), false).toList();
     }
 
     public boolean update(Accident accident, HttpServletRequest req) {
@@ -46,8 +49,9 @@ public class AccidentServiceSD {
     private Accident getAccidentWithTypeAndRules(Accident accident, HttpServletRequest req) {
         AccidentType type = accidentTypeServiceSD.findById(accident.getType().getId()).get();
         accident.setType(type);
-        String[] ids = req.getParameterValues("rIds");
-        Set<Rule> rules = ruleServiceSD.findById(ids);
+        List<Integer> listIds = Arrays.stream(req.getParameterValues("rIds"))
+                .map(Integer :: parseInt).toList();
+        Set<Rule> rules = ruleServiceSD.findByIdIn(listIds);
         accident.setRules(rules);
         return accident;
     }
