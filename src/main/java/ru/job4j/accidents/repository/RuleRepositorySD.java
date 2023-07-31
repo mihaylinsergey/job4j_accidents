@@ -3,6 +3,7 @@ package ru.job4j.accidents.repository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.repository.CrudRepository;
 import ru.job4j.accidents.model.Rule;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -10,4 +11,6 @@ import java.util.Set;
 public interface RuleRepositorySD extends CrudRepository<Rule, Integer> {
 
     Set<Rule> findByIdIn(List<Integer> id);
+
+    public Collection<Rule> findAll();
 }

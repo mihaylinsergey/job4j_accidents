@@ -17,7 +17,7 @@ public class AccidentTypeServiceSD {
     private final AccidentTypeRepositorySD accidentTypeRepositorySD;
 
     public Collection<AccidentType> findAll() {
-        return StreamSupport.stream(accidentTypeRepositorySD.findAll().spliterator(), false).toList();
+        return accidentTypeRepositorySD.findAll();
     }
 
     public Optional<AccidentType> findById(int id) {

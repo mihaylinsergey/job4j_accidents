@@ -30,7 +30,7 @@ public class AccidentServiceSD {
     }
 
     public List<Accident> findAll() {
-        return StreamSupport.stream(accidentRepositorySD.findAll().spliterator(), false).toList();
+        return accidentRepositorySD.findAll();
     }
 
     public boolean update(Accident accident, HttpServletRequest req) {

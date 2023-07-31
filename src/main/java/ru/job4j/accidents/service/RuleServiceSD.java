@@ -17,7 +17,7 @@ public class RuleServiceSD {
     private final RuleRepositorySD ruleRepositorySD;
 
     public Collection<Rule> findAll() {
-        return StreamSupport.stream(ruleRepositorySD.findAll().spliterator(), false).toList();
+        return ruleRepositorySD.findAll();
     }
 
     public Set<Rule> findByIdIn(List<Integer> id) {
