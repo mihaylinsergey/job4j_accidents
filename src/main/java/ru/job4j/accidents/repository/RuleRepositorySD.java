@@ -12,5 +12,5 @@ public interface RuleRepositorySD extends CrudRepository<Rule, Integer> {
 
     Set<Rule> findByIdIn(List<Integer> id);
 
-    public Collection<Rule> findAll();
+    Collection<Rule> findAll();
 }

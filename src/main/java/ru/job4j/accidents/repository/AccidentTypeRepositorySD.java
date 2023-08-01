@@ -9,5 +9,5 @@ import java.util.Collection;
 @Primary
 public interface AccidentTypeRepositorySD extends CrudRepository<AccidentType, Integer> {
 
-    public Collection<AccidentType> findAll();
+    Collection<AccidentType> findAll();
 }
