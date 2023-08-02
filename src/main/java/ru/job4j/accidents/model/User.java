@@ -62,8 +62,17 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
+<<<<<<< HEAD
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+=======
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+>>>>>>> 2f3d8a4d012994a9c779d35f967d04513f932811
         User user = (User) o;
         return id == user.id;
     }

@@ -30,8 +30,17 @@ public class Authority {
 
     @Override
     public boolean equals(Object o) {
+<<<<<<< HEAD
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+=======
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+>>>>>>> 2f3d8a4d012994a9c779d35f967d04513f932811
         Authority authority = (Authority) o;
         return id == authority.id;
     }
