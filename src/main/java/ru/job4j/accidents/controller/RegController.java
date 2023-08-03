@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.accidents.model.User;
-import ru.job4j.accidents.repository.AuthorityRepository;
 import ru.job4j.accidents.service.AuthorityService;
 import ru.job4j.accidents.service.UserService;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/accident")
-public class RegControl {
+public class RegController {
 
     private final PasswordEncoder encoder;
     private final UserService users;

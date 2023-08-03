@@ -19,6 +19,6 @@ public class IndexController {
     public String index(Model model) {
         model.addAttribute("accidents", accidentService.findAll());
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "accident/index";
+        return "/accident/index";
     }
 }
