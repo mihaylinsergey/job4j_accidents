@@ -14,7 +14,6 @@ import ru.job4j.accidents.Main;
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 public class IndexControllerTest {
 
     @Autowired
