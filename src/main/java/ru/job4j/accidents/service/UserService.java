@@ -12,8 +12,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void save(User user) {
-        userRepository.save(user);
+    public Optional<User> save(User user) {
+        Optional<User> rsl;
+        try {
+            rsl = Optional.of(userRepository.save(user));
+        } catch (Exception e) {
+            rsl = Optional.empty();
+        }
+        return rsl;
     }
 
     public Optional<User> findByUsernameAndPassword(String username, String password) {

@@ -23,16 +23,15 @@ public class RegController {
 
     @PostMapping("/reg")
     public String regSave(@ModelAttribute User user, Model model) {
-        var userOptional = users.findByUsername(user.getUsername());
-        if (!userOptional.isEmpty()) {
-            model.addAttribute("message", "Данный логин уже существует");
-            return "/error/404";
-        }
         user.setEnabled(true);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setAuthority(authorities.findByAuthority("ROLE_USER"));
-        users.save(user);
-        return "redirect:/accident/login";
+        if (users.save(user).isPresent()) {
+            return "redirect:/accident/login";
+        }
+        model.addAttribute("message", "Данный логин уже существует");
+        return "/error/404";
+
     }
 
     @GetMapping("/reg")
