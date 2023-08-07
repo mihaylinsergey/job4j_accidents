@@ -9,8 +9,8 @@ import ru.job4j.accidents.model.AccidentType;
 import java.util.Collection;
 import java.util.Optional;
 
-@Repository
-@ThreadSafe
+/*@Repository
+@ThreadSafe*/
 @AllArgsConstructor
 public class AccidentTypeJdbc implements AccidentTypeRepository {
 

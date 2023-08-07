@@ -10,8 +10,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
-@ThreadSafe
+/*@Repository
+@ThreadSafe*/
 public class AccidentMem implements AccidentRepository {
 
    private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();

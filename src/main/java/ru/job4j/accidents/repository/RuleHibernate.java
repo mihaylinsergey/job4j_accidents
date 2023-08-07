@@ -8,10 +8,11 @@ import ru.job4j.accidents.model.Rule;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Repository
-@AllArgsConstructor
+/*@Repository
+
 @Primary
-@ThreadSafe
+@ThreadSafe*/
+@AllArgsConstructor
 public class RuleHibernate implements RuleRepository {
 
     private final CrudRepository crudRepository;

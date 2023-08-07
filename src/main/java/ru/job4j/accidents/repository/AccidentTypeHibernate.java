@@ -8,10 +8,10 @@ import ru.job4j.accidents.model.AccidentType;
 import java.util.Collection;
 import java.util.Optional;
 
-@Repository
-@AllArgsConstructor
+/*@Repository
 @Primary
-@ThreadSafe
+@ThreadSafe*/
+@AllArgsConstructor
 public class AccidentTypeHibernate implements AccidentTypeRepository {
 
     private final CrudRepository crudRepository;

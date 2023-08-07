@@ -9,8 +9,8 @@ import ru.job4j.accidents.repository.RuleRepository;
 import java.util.Collection;
 import java.util.Set;
 
-@Service
-@ThreadSafe
+/*@Service
+@ThreadSafe*/
 @AllArgsConstructor
 public class RuleServiceJdbc implements RuleService {
 

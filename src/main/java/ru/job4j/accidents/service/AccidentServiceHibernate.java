@@ -15,9 +15,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
+/*@Service
+@ThreadSafe*/
 @AllArgsConstructor
-@ThreadSafe
 public class AccidentServiceHibernate implements AccidentService {
     private final AccidentRepository accidentRepository;
     private final AccidentTypeRepository accidentTypeRepository;

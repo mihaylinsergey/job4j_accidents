@@ -9,9 +9,9 @@ import ru.job4j.accidents.repository.AccidentTypeRepository;
 import java.util.Collection;
 import java.util.Optional;
 
-@Service
+/*@Service
+@ThreadSafe*/
 @AllArgsConstructor
-@ThreadSafe
 public class AccidentTypeServiceHibernate implements AccidentTypeService {
 
     private final AccidentTypeRepository accidentTypeRepository;

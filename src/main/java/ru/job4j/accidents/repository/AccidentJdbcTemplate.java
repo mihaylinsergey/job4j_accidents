@@ -18,8 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-@Repository
-@ThreadSafe
+/*@Repository
+@ThreadSafe*/
 @AllArgsConstructor
 public class AccidentJdbcTemplate implements AccidentRepository {
     private final JdbcTemplate jdbc;

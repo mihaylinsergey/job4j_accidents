@@ -7,8 +7,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-@Repository
-@ThreadSafe
+/*@Repository
+@ThreadSafe*/
 public class RuleMem implements RuleRepository {
 
     private final Map<Integer, Rule> rules = new ConcurrentHashMap<>();

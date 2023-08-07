@@ -14,8 +14,8 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
-@ThreadSafe
+/*@Service
+@ThreadSafe*/
 @AllArgsConstructor
 public class AccidentServiceJdbc implements AccidentService {
 

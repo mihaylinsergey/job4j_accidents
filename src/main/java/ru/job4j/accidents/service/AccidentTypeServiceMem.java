@@ -7,7 +7,7 @@ import ru.job4j.accidents.repository.AccidentTypeMem;
 import java.util.Collection;
 import java.util.Optional;
 
-@Service
+/*@Service*/
 @AllArgsConstructor
 public class AccidentTypeServiceMem implements AccidentTypeService {
 
