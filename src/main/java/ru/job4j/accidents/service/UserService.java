@@ -5,19 +5,22 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.User;
 import ru.job4j.accidents.repository.UserRepository;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class.getName());
 
     public Optional<User> save(User user) {
-        Optional<User> rsl;
+        Optional<User> rsl = Optional.empty();
         try {
             rsl = Optional.of(userRepository.save(user));
         } catch (Exception e) {
-            rsl = Optional.empty();
+            LOG.error("Error!", e);
         }
         return rsl;
     }
